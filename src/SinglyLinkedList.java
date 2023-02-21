@@ -1,4 +1,10 @@
-
+/**
+ * 
+ * @author Thulani
+ *
+ * @param <T> generic type for class
+ * @apiNote this class is a singly linked list. 
+ */
 public class SinglyLinkedList<T>{
 	private List<T> head = new List<T>();
 	private List<T> tail = new List<T>();
@@ -140,6 +146,51 @@ public class SinglyLinkedList<T>{
 		}
 	}
 	
+	public void addAfter(T value, T valueAfter)
+	{
+		boolean cont = true;
+		
+		List<T> temp = head;
+		
+		if(valueAfter == tail.getValue())
+		{
+			this.addToTail(value);
+			length++;
+			return;
+		}
+		
+		SinglyLinkedList<T> list = new SinglyLinkedList<>();
+		
+		
+		while(cont)
+		{
+			if(temp.getValue() == valueAfter)
+			{
+				List<T> newNode = new List<>();
+				newNode.setValue(value);
+				newNode.setNext(temp.getNext());
+				temp.setNext(newNode);
+				list.setTail(temp);
+				length++;
+				return;
+			}
+			else
+			{
+				list.addToTail(temp.getValue());
+				List<T> nextNode = temp.getNext();
+				temp = nextNode;
+			}
+			
+			if(temp.getNext() == null && temp.getValue()!=valueAfter ) {
+				System.err.println("\"" +valueAfter+"\" is not in the list.\"" +valueAfter+"\" has been added to the tail");
+				this.addToTail(value);
+				cont = false;
+				return;
+			}
+		}
+	}
+	
+	
 	public void addBefore(T value, T valueBefore)
 	{
 		boolean cont = true;
@@ -163,7 +214,7 @@ public class SinglyLinkedList<T>{
 			count++;
 			if(count>=length)
 			{
-				System.err.println("\"" +valueBefore+"\" is not in the list. The value has been added to the tail");
+				System.err.println("\"" +valueBefore+"\" is not in the list.\"" +valueBefore+"\" has been added to the tail");
 				this.addToTail(value);
 				cont = false;
 			}
@@ -189,8 +240,6 @@ public class SinglyLinkedList<T>{
 				newList.setTail(newNode);	
 				return;
 			}
-			
-
 			
 		}
 	}
