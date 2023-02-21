@@ -40,15 +40,28 @@ public class SinglyLinkedList<T>{
 		tail.setValue(null);
 	}
 	
+	/**
+	 * @apiNote this method adds a value from the parameter to the head of the list
+	 * @param value is the value to be added to the list
+	 */
 	public void addToHead(T value)
-	{
-		if(head.getValue() == null)
+	{	
+		if(length==0)
 		{
+			length++;
 			head.setValue(value);
 			tail.setValue(value);
 			head.setNext(tail);
+			
+		}else if(length ==1)
+		{
+			List<T> newNode = new List<T>();
+			newNode.setValue(value);
+			newNode.setNext(tail);
+			head = newNode;
 			length++;
-		}else
+		}
+		else
 		{
 			List<T> oldList = new List<T>();
 			oldList = head;
@@ -64,6 +77,9 @@ public class SinglyLinkedList<T>{
 		}
 	}
 	
+	/**
+	 * @apiNote this methods prints the values in the list from the head to the tail.
+	 */
 	public String toString() {
 		
 		String ret = "";
@@ -74,8 +90,9 @@ public class SinglyLinkedList<T>{
 		
 		while(cont)
 		{
-			if(temp == tail)
+			if(temp.getNext() == null)
 			{
+				ret += temp.getValue() +" ";
 				cont = false;
 				break;
 			}else
