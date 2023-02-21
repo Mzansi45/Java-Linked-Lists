@@ -45,7 +45,8 @@ public class SinglyLinkedList<T>{
 	 * @param value is the value to be added to the list
 	 */
 	public void addToHead(T value)
-	{	
+	{
+		//if list is empty, add same value to head and tail
 		if(length==0)
 		{
 			length++;
@@ -53,7 +54,7 @@ public class SinglyLinkedList<T>{
 			tail.setValue(value);
 			head.setNext(tail);
 			
-		}else if(length ==1)
+		}else if(length ==1) // one value exists, change the head to the new value and make next value be the tail
 		{
 			List<T> newNode = new List<T>();
 			newNode.setValue(value);
@@ -90,19 +91,107 @@ public class SinglyLinkedList<T>{
 		
 		while(cont)
 		{
-			if(temp.getNext() == null)
+			if(length <=1)
 			{
-				ret += temp.getValue() +" ";
+				ret += temp.getValue();
 				cont = false;
-				break;
-			}else
+			}
+			else
 			{
-				ret += temp.getValue() +" ";
-				List<T> nextNode = temp.getNext();
-				temp = nextNode;
+				if(temp.getNext() == null)
+				{
+					ret += temp.getValue() +" ";
+					cont = false;
+					break;
+				}else
+				{
+					ret += temp.getValue() +" ";
+					List<T> nextNode = temp.getNext();
+					temp = nextNode;
+				
+				}
 			}
 		}
 		
 		return ret;
+	}
+	
+	public void addToTail(T value)
+	{
+		if(length==0)
+		{
+			length++;
+			head.setValue(value);
+			tail.setValue(value);
+			head.setNext(tail);
+		}
+		else if(length ==1)
+		{
+			length++;
+			tail.setValue(value);
+		}
+		else {
+			List<T> newNode = new List<T>();
+			newNode.setValue(value);
+			newNode.setNext(null);
+			tail.setNext(newNode);
+			tail = newNode;
+			length++;
+		}
+	}
+	
+	public void addBefore(T value, T valueBefore)
+	{
+		boolean cont = true;
+		
+		List<T> temp = head;
+		
+		//if value before is the head
+		if(head.getValue() == valueBefore)
+		{
+			this.addToHead(value);
+			length++;
+			return;
+		}
+		
+		int count = 0;
+		
+		SinglyLinkedList<T> newList = new SinglyLinkedList<>();
+		
+		while(cont)
+		{	
+			count++;
+			if(count>=length)
+			{
+				System.err.println("\"" +valueBefore+"\" is not in the list. The value has been added to the tail");
+				this.addToTail(value);
+				cont = false;
+			}
+			
+			
+			if(temp.getNext() == null)
+			{
+				cont = false;
+			}
+			
+			if(temp.getNext().getValue() != valueBefore)
+			{
+				newList.addToTail(temp.getValue());
+				List<T> nextNode = temp.getNext();
+				temp = nextNode;
+			}
+			else
+			{
+				List<T> newNode = new List<>();
+				newNode.setValue(value);
+				newNode.setNext(temp.getNext());
+				temp.setNext(newNode);
+				newList.setTail(newNode);	
+				return;
+			}
+			
+
+			
+		}
 	}
 }

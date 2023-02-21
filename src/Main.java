@@ -7,7 +7,7 @@ public class Main {
 		
 		for(int x =0;x<10;x++)
 		{
-			list.addToHead(x);
+			list.addToTail(x);
 		}
 		
 		list.getTail().setValue(12);
@@ -15,5 +15,8 @@ public class Main {
 		System.out.println(list.toString());
 		
 		System.out.println(list.getLength());
+		
+		list.addBefore(30,13);
+		System.out.println(list.toString());
 	}
 }
