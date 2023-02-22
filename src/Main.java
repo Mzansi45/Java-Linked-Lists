@@ -12,7 +12,8 @@ public class Main {
 		
 		System.out.println(list.toString());
 		
-		list.addAfter(30,8);
+		list.deleteNode(7);
 		System.out.println(list.toString());
+		System.out.println("Size - " + list.getLength());
 	}
 }

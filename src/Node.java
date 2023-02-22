@@ -3,14 +3,14 @@
  * @author Thulani
  *
  * @param <T> Generic Type for class
- * @apiNote this serves as a template for linked lists
+ * @apiNote this serves as a template for linked Nodes
  * @version One
  */
-public class List <T>{
+public class Node <T>{
 	@SuppressWarnings("unchecked")
 	private T value = (T) new Object();
-	private List<T> next = null;
-	private List<T> prev = null;
+	private Node<T> next = null;
+	private Node<T> prev = null;
 	
 	/**
 	 * @return the method returns the value saved in the class
@@ -31,7 +31,7 @@ public class List <T>{
 	 * 
 	 * @return the next reference or next value
 	 */
-	public List<T> getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
 	
@@ -39,15 +39,15 @@ public class List <T>{
 	 * 
 	 * @param next is for setting the next value
 	 */
-	public void setNext(List<T> next) {
+	public void setNext(Node<T> next) {
 		this.next = next;
 	}
 	
 	/**
 	 * 
-	 * @return the previous value of the list
+	 * @return the previous value of the Node
 	 */
-	public List<T> getPrev() {
+	public Node<T> getPrev() {
 		return prev;
 	}
 	
@@ -55,9 +55,10 @@ public class List <T>{
 	 * 
 	 * @param prev setting the previous value
 	 */
-	public void setPrev(List<T> prev) {
+	public void setPrev(Node<T> prev) {
 		this.prev = prev;
 	}
+	
 	
 	
 }
